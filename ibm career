@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IBM Careers</title>
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f6f8;
+}
+
+/* HEADER */
+header{
+    background:#0f62fe;
+    color:white;
+    padding:15px 40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.search-box input{
+    width:320px;
+    padding:8px;
+    border:none;
+    border-radius:3px;
+}
+
+.status{
+    font-size:16px;
+}
+
+/* JOB CARDS */
+.container{
+    padding:30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:6px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
+
+.card h3{
+    font-size:18px;
+    margin-bottom:10px;
+    color:#0f62fe;
+}
+
+.card p{
+    margin:6px 0;
+    font-size:14px;
+}
+
+.card span{
+    font-weight:bold;
+}
+
+.card button{
+    margin-top:15px;
+    padding:10px;
+    width:100%;
+    background:#0f62fe;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    color:white;
+    border-radius:4px;
+}
+
+.card button:hover{
+    background:#0043ce;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">IBM Careers</div>
+
+    <div class="search-box">
+        <input type="text" id="search" placeholder="Search by role, skill, location" onkeyup="searchJob()">
+    </div>
+
+    <div class="status">
+        <i class="fa-solid fa-briefcase"></i>
+        Jobs Applied: <span id="jobCount">0</span>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h3>DevOps Engineer</h3>
+        <p><span>Location:</span> Bangalore / Hyderabad</p>
+        <p><span>Experience:</span> 3–6 Years</p>
+        <p><span>Skills:</span> AWS, Docker, Kubernetes, CI/CD</p>
+        <button onclick="apply()">Apply Job</button>
+    </div>
+
+    <div class="card">
+        <h3>Cloud Support Engineer</h3>
+        <p><span>Location:</span> Chennai</p>
+        <p><span>Experience:</span> 2–4 Years</p>
+        <p><span>Skills:</span> Linux, AWS, Azure</p>
+        <button onclick="apply()">Apply Job</button>
+    </div>
+
+    <div class="card">
+        <h3>Java Full Stack Developer</h3>
+        <p><span>Location:</span> Pune</p>
+        <p><span>Experience:</span> 4–7 Years</p>
+        <p><span>Skills:</span> Java, Spring Boot, React</p>
+        <button onclick="apply()">Apply Job</button>
+    </div>
+
+    <div class="card">
+        <h3>Data Analyst</h3>
+        <p><span>Location:</span> Remote</p>
+        <p><span>Experience:</span> 2–5 Years</p>
+        <p><span>Skills:</span> SQL, Python, Power BI</p>
+        <button onclick="apply()">Apply Job</button>
+    </div>
+
+</div>
+
+<script>
+let jobsApplied = 0;
+
+function apply(){
+    jobsApplied++;
+    document.getElementById("jobCount").innerText = jobsApplied;
+    alert("Application submitted successfully to IBM!");
+}
+
+function searchJob(){
+    let input = document.getElementById("search").value.toLowerCase();
+    let cards = document.getElementsByClassName("card");
+
+    for(let i=0;i<cards.length;i++){
+        let title = cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+        cards[i].style.display = title.includes(input) ? "block" : "none";
+    }
+}
+</script>
+
+</body>
+</html>
