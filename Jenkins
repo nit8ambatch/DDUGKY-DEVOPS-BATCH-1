@@ -1,0 +1,96 @@
+Jenkins
+It is a build tool.
+
+
+ci : continous integration : continous build + continous test 
+old code with new code
+before ci we have time waste and every thing is manual work.
+after ci everything is automated.
+
+cd : continous delivery	  : deployment manually to prod env
+cd : continous deployment : deployment automatically to prod env
+
+PIPELINE:
+STEP BY STEP EXECUTION OF A PARTICULAR PROCESS.
+SERIES OF EVENTS INTERLINKED WITH EACHOTHER.
+
+CODE -- > BUILD -- > TEST -- >  DEPLOY
+
+ENV:
+DEV	: DEVELOPERS
+QA	: TESTERS
+UAT	: CLIENT
+
+THE ABOVE ENVS ARE CALLED AS PRE-PROD OR NON-PROD
+
+PROD	: USER
+PROD ENV IS ALSO CALLED AS LIVE ENV
+
+Day 2:-
+
+Jenkins port number - 8080
+ssh port number -22
+http port number - 80
+https - 443
+mysql -3306
+rdp - 3389
+
+To lunch instance for Jenkins
+
+* Go to aws console and login
+* Go to search box type ec2 and select.
+* launch instance 
+ step 1 - select amazon-linux 2 hvm (ami)
+ step 2 - select instance type t2.micro
+ step 3 - create new key pair in .pem
+ step 4 - create new security group  
+           go to edit and provide ssh and all traffic
+ step 5 - launch instance.
+* Go to instance select connect and go through ssh client-->copy example
+Go to browser - jenkins.io - click on download
+* Download Jenkins 2.479.2 LTS for: redhat/centos/fedora
+   select that
+
+amazon-linux -- yum
+Ubuntu     --- apt
+redhat      --- rpm
+
+JENKINS: PORT - 8080
+
+SETUP:
+STEP-1: GETTING REP0 (jenkins.io -- > downloads -- > Redhat)
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+STEP-2: INSTALLING JAVA 11
+amazon-linux-extras install java-openjdk11 -y
+
+STEP-3: INSTALLING GIT JENKINS MAVEN 
+yum install git maven jenkins -y
+
+STEP-4: STARTING THE SERVICE (any service will be on stopped state when its installed)
+systemctl start jenkins
+systemctl status jenkins
+
+#STEP-1: INSTALLING GIT JAVA-1.8.0 MAVEN 
+yum install git java-1.8.0-openjdk maven -y
+
+#STEP-2: GETTING THE REPO (jenkins.io --> download -- > redhat)
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+#STEP-3: DOWNLOAD JAVA11 AND JENKINS
+sudo yum install java-17-amazon-corretto -y
+yum install jenkins -y
+update-alternatives --config java
+
+#STEP-4: RESTARTING JENKINS (when we download service it will on stopped state)
+systemctl start jenkins.service
+systemctl status jenkins.service
+
+try this installation its workig
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+yum install git maven jenkins -y
+systemctl start jenkins
+systemctl status jenkins
