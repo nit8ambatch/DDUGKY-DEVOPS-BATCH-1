@@ -207,3 +207,63 @@ pipeline {
         }
     }
 }
+
+
+
+pipeline {
+    agent any
+
+    stages {
+
+        stage("Stage-1") {
+            steps {
+                sh 'touch file1 file2'
+                sh 'pwd'
+                sh 'mkdir -p d1'
+            }
+        }
+
+        stage('Checkout Repo 1') {
+            steps {
+                git url: 'https://github.com/nit8ambatch/Devops-batch123.git'
+            }
+        }
+
+        stage('Commands') {
+            steps {
+                sh '''
+                touch abc.txt
+                df -h
+                '''
+            }
+        }
+
+        stage('CPU Check Script') {
+            steps {
+                sh '''
+                #!/bin/bash
+                THRESHOLD=80
+                CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print 100 - $8}')
+                echo "Current CPU Usage: ${CPU_USAGE}%"
+
+                if (( $(echo "$CPU_USAGE > $THRESHOLD" | bc -l) )); then
+                    echo "WARNING: CPU usage is above ${THRESHOLD}%!"
+                else
+                    echo "CPU usage is under control."
+                fi
+                '''
+            }
+        }
+
+        stage('Checkout Repo 2') {
+            steps {
+                git url: 'https://github.com/devopsbyraham/jenkins-java-project.git'
+            }
+        }
+    }
+}
+
+
+
+
+ 
