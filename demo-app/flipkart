@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flipkart Mini App</title>
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background:#f1f3f6;
+}
+
+/* HEADER */
+header{
+    background:#2874f0;
+    color:white;
+    padding:15px 40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.search-box input{
+    width:300px;
+    padding:8px;
+    border:none;
+    border-radius:3px;
+}
+
+.cart{
+    font-size:18px;
+}
+
+/* PRODUCTS */
+.container{
+    padding:30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:15px;
+    border-radius:5px;
+    text-align:center;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+.card img{
+    width:100%;
+    height:160px;
+    object-fit:contain;
+}
+
+.card h3{
+    font-size:16px;
+    margin:10px 0;
+}
+
+.card p{
+    color:green;
+    font-weight:bold;
+}
+
+.card button{
+    margin-top:10px;
+    padding:10px;
+    width:100%;
+    background:#ff9f00;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.card button:hover{
+    background:#fb641b;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Flipkart</div>
+
+    <div class="search-box">
+        <input type="text" id="search" placeholder="Search for products..." onkeyup="searchProduct()">
+    </div>
+
+    <div class="cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        Cart (<span id="cartCount">0</span>)
+    </div>
+</header>
+
+<div class="container" id="productList">
+
+    <div class="card">
+        <img src="https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/q/j/o/-original-imaghx9qmgqz6vfh.jpeg" alt="">
+        <h3>iPhone 14</h3>
+        <p>₹69,999</p>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="https://rukminim2.flixcart.com/image/416/416/xif0q/laptop/5/8/k/-original-imagp7pfhzj7kz2y.jpeg" alt="">
+        <h3>HP Laptop</h3>
+        <p>₹55,999</p>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="https://rukminim2.flixcart.com/image/416/416/xif0q/headphone/3/o/v/-original-imagqhswqhh6v3xt.jpeg" alt="">
+        <h3>Headphones</h3>
+        <p>₹2,499</p>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="https://rukminim2.flixcart.com/image/416/416/xif0q/shoe/n/g/c/-original-imagg7t6fdbtqjfw.jpeg" alt="">
+        <h3>Sports Shoes</h3>
+        <p>₹3,199</p>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+</div>
+
+<script>
+let cart = 0;
+
+function addToCart(){
+    cart++;
+    document.getElementById("cartCount").innerText = cart;
+}
+
+function searchProduct(){
+    let input = document.getElementById("search").value.toLowerCase();
+    let cards = document.getElementsByClassName("card");
+
+    for(let i=0;i<cards.length;i++){
+        let title = cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+        cards[i].style.display = title.includes(input) ? "block" : "none";
+    }
+}
+</script>
+
+</body>
+</html>
